@@ -312,6 +312,10 @@ class LzoDecompressor implements Decompressor {
     // nop
   }
 
+  public synchronized int getRemaining() {
+    return userBufLen;
+  }
+
   protected void finalize() {
     end();
   }
