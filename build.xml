@@ -82,7 +82,6 @@
   <property name="javac.debug" value="on"/>
   <property name="javac.optimize" value="on"/>
   <property name="javac.deprecation" value="on"/>
-  <property name="javac.version" value="1.6"/>
   <property name="javac.args" value=""/>
   <property name="javac.args.warnings" value="-Xlint:unchecked"/>
 
@@ -186,8 +185,6 @@
      destdir="${build.classes}"
      debug="${javac.debug}"
      optimize="${javac.optimize}"
-     target="${javac.version}"
-     source="${javac.version}"
      deprecation="${javac.deprecation}">
       <compilerarg line="${javac.args} ${javac.args.warnings}" />
       <classpath refid="classpath"/>
@@ -210,6 +207,7 @@
   	   verbose="yes">
       <class name="com.hadoop.compression.lzo.LzoCompressor" />
       <class name="com.hadoop.compression.lzo.LzoDecompressor" />
+      <classpath refid="classpath"/>
     </javah>
 
     <exec dir="${build.native}" executable="sh" failonerror="true">
@@ -230,6 +228,10 @@
 	<exec dir="${build.native}" executable="sh" failonerror="true">
 	  <arg line="${build.native}/libtool --mode=install cp ${build.native}/libgplcompression.la ${build.native}/lib"/>
     </exec>
+
+    <copy todir="${build.native}/lib">
+        <fileset file="${lib.dir}/native/liblzo2.*"/>
+	</copy>
 
   </target>
 
@@ -267,8 +269,6 @@
      destdir="${test.build.classes}"
      debug="${javac.debug}"
      optimize="${javac.optimize}"
-     target="${javac.version}"
-     source="${javac.version}"
      deprecation="${javac.deprecation}">
       <compilerarg line="${javac.args} ${javac.args.warnings}" />
       <classpath refid="test.classpath"/>
