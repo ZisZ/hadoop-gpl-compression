@@ -336,7 +336,8 @@ public class LzopCodec extends LzoCodec {
       hitem = readHeaderItem(in, buf, 1, adler, crc32); // fn len
       if (hitem > 0) {
         // skip filename
-        readHeaderItem(in, new byte[hitem], hitem, adler, crc32);
+        int filenameLen = Math.max(4, hitem);
+        readHeaderItem(in, new byte[filenameLen], hitem, adler, crc32);
       }
       int checksum = (int)(useCRC32 ? crc32.getValue() : adler.getValue());
       hitem = readHeaderItem(in, buf, 4, adler, crc32); // read checksum
