@@ -12,7 +12,7 @@
           http://www.ibiblio.net/pub/packages/maven2
   -->
   <property name="nexus-internal"
-    value="http://10.10.0.189:8081/nexus/content/groups/public-snapshots"
+    value="http://repo1.maven.org/maven2/"
     override="false"/>
   <property name="repo.maven.org"
     value="http://repo1.maven.org/maven2/"
